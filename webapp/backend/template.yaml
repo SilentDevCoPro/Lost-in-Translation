@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lost-in-Translation - Lambda backend for translating uploaded .txt files
+
+Globals:
+  Function:
+    Timeout: 10
+    Runtime: python3.9
+    MemorySize: 512
+    Environment:
+      Variables:
+        UPLOAD_BUCKET: !Ref UploadBucket
+
+Resources:
+
+  UploadBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-upload-bucket"
+
+  TranslateFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: lambda/upload_handler.lambda_handler
+      CodeUri: .
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - S3WritePolicy:
+            BucketName: !Ref UploadBucket
+        - Statement:
+            - Effect: Allow
+              Action:
+                - translate:TranslateText
+              Resource: "*"
+      Events:
+        FileUpload:
+          Type: Api
+          Properties:
+            Path: /translate
+            Method: post
+      Environment:
+        Variables:
+          UPLOAD_BUCKET: !Ref UploadBucket
+
+Outputs:
+  ApiEndpoint:
+    Description: "API Gateway endpoint URL for file translation"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/translate"
+
+  UploadBucketName:
+    Description: "S3 bucket where translated files are stored"
+    Value: !Ref UploadBucket
