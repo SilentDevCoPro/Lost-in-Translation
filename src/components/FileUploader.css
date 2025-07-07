@@ -1,0 +1,115 @@
+.file-uploader-container {
+  width: 420px;
+  margin: 100px auto;
+  padding: 30px;
+  text-align: center;
+  background-color: var(--uploader-bg, #ffffff);
+  border: 2px solid var(--uploader-border, #ddd);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  color: var(--text-primary, #222);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.drop-zone {
+  border: 2px dashed var(--dropzone-border, #555);
+  padding: 40px;
+  margin-bottom: 20px;
+  background-color: var(--dropzone-bg, #f0f0f0);
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+  color: var(--text-muted, #555);
+}
+
+.drop-zone.drag-over {
+  background-color: #d0f0e0;
+  border-color: #4caf50;
+  cursor: copy;
+}
+
+.drop-zone:hover {
+  background-color: var(--dropzone-hover, #e0e0e0);
+}
+
+.submit-button {
+  border: none;
+  background-color: var(--button-bg, #4caf50);
+  color: var(--button-text, #fff);
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  background-color: var(--button-hover, #388e3c);
+}
+
+.filename {
+  margin-top: 10px;
+  font-style: italic;
+  color: var(--filename-color, #333);
+}
+
+.download-link {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.download-link a {
+  color: var(--link-color, #1a73e8);
+  text-decoration: none;
+}
+
+.download-link a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: var(--error-color, red);
+  margin-top: 10px;
+}
+
+.language-label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: var(--text-secondary, #333);
+}
+
+.language-select {
+  margin: 10px 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  font-size: 1rem;
+  background-color: var(--uploader-bg, #fff);
+  color: var(--text-primary, #222);
+}
+
+/* Light Theme Defaults */
+body.light {
+  --text-primary: #222;
+  --text-secondary: #333;
+  --text-muted: #555;
+}
+
+/* Dark Theme Overrides */
+body.dark {
+  --uploader-bg: #1e1e1e;
+  --uploader-border: #444;
+  --dropzone-border: #888;
+  --dropzone-bg: #2b2b2b;
+  --dropzone-hover: #3a3a3a;
+  --button-bg: #2196f3;
+  --button-hover: #1976d2;
+  --button-text: #fff;
+  --filename-color: #ccc;
+  --link-color: #90caf9;
+  --error-color: #ff6b6b;
+  --text-primary: #f0f0f0;
+  --text-secondary: #ccc;
+  --text-muted: #aaa;
+}
